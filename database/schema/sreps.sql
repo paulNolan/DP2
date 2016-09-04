@@ -21,18 +21,18 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `surname` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `first_name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `surname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` int(10) NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `medicare_num` int(11) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `medicare_num` (`medicare_num`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of customers
@@ -44,13 +44,13 @@ CREATE TABLE `customers` (
 DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `qty` int(2) DEFAULT NULL,
   `price` double(4,2) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of products
@@ -71,7 +71,7 @@ CREATE TABLE `purchase_orders` (
   KEY `customers_id` (`customers_id`),
   CONSTRAINT `purchase_orders_ibfk_1` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`id`),
   CONSTRAINT `purchase_orders_ibfk_2` FOREIGN KEY (`customers_id`) REFERENCES `customers` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of purchase_orders
@@ -88,7 +88,7 @@ CREATE TABLE `purchase_orders_products` (
   KEY `products_id` (`products_id`),
   CONSTRAINT `purchase_orders_products_ibfk_1` FOREIGN KEY (`purchase_orders_id`) REFERENCES `purchase_orders` (`id`),
   CONSTRAINT `purchase_orders_products_ibfk_2` FOREIGN KEY (`products_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of purchase_orders_products
@@ -100,20 +100,20 @@ CREATE TABLE `purchase_orders_products` (
 DROP TABLE IF EXISTS `staff`;
 CREATE TABLE `staff` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `surname` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `first_name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `surname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` int(10) NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `store_location` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `username` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password_hash` varchar(72) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `store_location` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `username` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `password_hash` varchar(72) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of staff
