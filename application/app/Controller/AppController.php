@@ -31,4 +31,51 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
+	public $components = array(
+		'Flash',
+		'Auth' => array(
+			'loginAction' => array(
+				'admin' => false,
+				'controller' => 'users',
+				'action' => 'login',
+			),
+			'loginRedirect' => array(
+				'admin' => true,
+				'controller' => 'pages',
+				'action' => 'home'
+			),
+			'logoutRedirect' => array(
+				'admin' => false,
+				'controller' => 'users',
+				'action' => 'login',
+			),
+			'authenticate' => array(
+				'Form' => array(
+					'userModel' => 'Staff',
+					'fields' => array(
+						'password' => 'password_hash',
+					),
+					'passwordHasher' => 'Blowfish'
+				)
+			)
+		)
+	);
+
+    public function beforeFilter() {
+    	$this->Auth->allow();
+		$this->Auth->deny(
+			'admin_add',
+			'admin_index',
+			'admin_view',
+			'admin_edit',
+			'admin_home'
+		);
+        $this->set('application_name', 'PHPSreps');
+    }
+
+    public function beforeRender() {
+//    	var_dump($this->Auth->user('id'));
+	}
+
 }

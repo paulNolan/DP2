@@ -2,6 +2,8 @@
 #################################################
 /app/Config/database.php
 /app/tmp
+/app/Vendor
+/app/Plugin
 /lib/Cake/Console/Templates/skel/tmp/
 /Plugin
 /plugins

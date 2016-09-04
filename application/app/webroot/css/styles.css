@@ -1,0 +1,21 @@
+#login-container {
+    position: relative;
+    margin-top: 25%;
+}
+
+#login-container p {
+    font-size: 12px;
+}
+
+.login-box {
+    padding: 1em 2em;
+}
+
+.login-header {
+    padding: 1.5em 2em;
+}
+
+.flash {
+    padding: 1em 2em;
+
+}

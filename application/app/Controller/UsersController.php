@@ -28,56 +28,39 @@ App::uses('AppController', 'Controller');
  * @package       app.Controller
  * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
  */
-class PagesController extends AppController {
+class UsersController extends AppController {
 
     /**
      * This controller does not use a model
      *
      * @var array
      */
-	public $uses = array();
-
-    /**
-     * Displays a view
-     *
-     * @return void
-     * @throws NotFoundException When the view file could not be found
-     *	or MissingViewException in debug mode.
-     */
-	/*public function home() {
-		$path = func_get_args();
-
-		$count = count($path);
-		if (!$count) {
-			return $this->redirect('/');
-		}
-		$page = $subpage = $title_for_layout = null;
-
-		if (!empty($path[0])) {
-			$page = $path[0];
-		}
-		if (!empty($path[1])) {
-			$subpage = $path[1];
-		}
-
-		$title_for_layout = Inflector::humanize('Home');
-
-		$this->set(compact('page', 'subpage', 'title_for_layout'));
-
-		try {
-			$this->render('home');
-		} catch (MissingViewException $e) {
-			if (Configure::read('debug')) {
-				throw $e;
-			}
-			throw new NotFoundException();
-		}
-	}*/
+    public $uses = array(
+    	'Staff'
+	);
 
 	/**
-	 * Admin test action
-	 */
-	public function admin_home() {
+     * Login
+     */
+    public function login() {
+		if ($this->request->is('post')) {
+			if ($this->Auth->login()) {
+				return $this->redirect($this->Auth->redirectUrl());
+			}
+			$this->Flash->error(__('Invalid username or password combination.<br/>Please check and try again.'));
+		}
 
+        $body_class = 'blue-grey darken-2';
+
+        $this->set(compact('body_class'));
+    }
+
+	/**
+	 * Logout
+	 *
+	 * @return \Cake\Network\Response|null
+	 */
+	public function logout() {
+		return $this->redirect($this->Auth->logout());
 	}
 }

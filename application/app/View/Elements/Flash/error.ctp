@@ -1,0 +1,1 @@
+<div class="flash red lighten-1 white-text"><?php echo $message; ?></div>
