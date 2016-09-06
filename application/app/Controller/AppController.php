@@ -32,6 +32,11 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
+	/**
+	 * Components
+	 *
+	 * @var array
+	 */
 	public $components = array(
 		'Flash',
 		'Auth' => array(
@@ -59,9 +64,15 @@ class AppController extends Controller {
 					'passwordHasher' => 'Blowfish'
 				)
 			)
-		)
+		),
+		'AdminNavigation'
 	);
 
+	/**
+	 * beforeFilter callback
+	 *
+	 * @return void
+	 */
     public function beforeFilter() {
     	$this->Auth->allow();
 		$this->Auth->deny(
@@ -71,11 +82,24 @@ class AppController extends Controller {
 			'admin_edit',
 			'admin_home'
 		);
-        $this->set('application_name', 'PHPSreps');
+	    $title_for_layout = $application_name = 'PHPSreps';
+        $this->set(compact('title_for_layout', 'application_name'));
     }
 
+	/**
+	 * beforeRender callback
+	 *
+	 * @return void
+	 */
     public function beforeRender() {
-//    	var_dump($this->Auth->user('id'));
+    	if ($this->Auth->loggedIn()) {
+		    if (isset($this->request->params['admin'])) {
+			    $this->layout = 'admin';
+			    $this->viewVars['title_for_layout'] .= ' | Admin';
+			    $body_class = 'blue-grey lighten-4 admin';
+			    $this->set(compact('body_class'));
+		    }
+	    }
 	}
 
 }

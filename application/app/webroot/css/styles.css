@@ -19,3 +19,30 @@
     padding: 1em 2em;
 
 }
+
+.admin #main {
+    padding: 24px;
+}
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    justify-content: center;
+    -js-display: flex;
+    display: flex;
+    align-items: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+}
+
+.data-table {
+    padding: 24px;
+}
+
+table .actions {
+    width: 100px;
+}

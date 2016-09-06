@@ -47,7 +47,7 @@ class UsersController extends AppController {
 			if ($this->Auth->login()) {
 				return $this->redirect($this->Auth->redirectUrl());
 			}
-			$this->Flash->error(__('Invalid username or password combination.<br/>Please check and try again.'));
+			$this->Flash->error(__('Invalid username and password combination.<br/>Please check and try again.'));
 		}
 
         $body_class = 'blue-grey darken-2';
