@@ -22,7 +22,7 @@
 							</div>
 							<div class="col s4">
 								<h6>Price</h6>
-								<p><?php echo sprintf('$0.2%f', $product['Product']['price']); ?></p>
+								<p>$<?php echo number_format($product['Product']['price'], 2); ?></p>
 							</div>
 						</div>
 						<div class="row">
