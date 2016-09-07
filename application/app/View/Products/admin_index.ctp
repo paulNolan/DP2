@@ -51,7 +51,7 @@
 									?>&nbsp;
 								</td>
 								<td><?php echo h($product['Product']['qty']); ?>&nbsp;</td>
-								<td><?php echo h($product['Product']['price']); ?>&nbsp;</td>
+								<td>$<?php echo number_format($product['Product']['price'], 2); ?>&nbsp;</td>
 								<td class="actions right-align">
 									<?php
 										echo $this->Html->link('Actions', '#', array('data-activates' => 'dropdown-' . $product['Product']['id'], 'class' => 'dropdown-button btn'));
