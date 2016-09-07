@@ -30,6 +30,7 @@
 							<thead>
 							<tr>
 								<th><?php echo $this->Paginator->sort('id', '#'); ?></th>
+								<th><?php echo $this->Paginator->sort('name', 'Product Name'); ?></th>
 								<th><?php echo $this->Paginator->sort('description'); ?></th>
 								<th><?php echo $this->Paginator->sort('qty', 'Quantity'); ?></th>
 								<th><?php echo $this->Paginator->sort('price'); ?></th>
@@ -40,7 +41,15 @@
 							<?php foreach ($products as $product): ?>
 							<tr>
 								<td><?php echo h($product['Product']['id']); ?>&nbsp;</td>
-								<td><?php echo h($product['Product']['description']); ?>&nbsp;</td>
+								<td><?php echo h($product['Product']['name']); ?>&nbsp;</td>
+								<td><?php
+										echo $this->Text->truncate(trim(strip_tags($product['Product']['description'])), 70,
+										array(
+											'ellipsis' => '...',
+											'exact' => false
+										));
+									?>&nbsp;
+								</td>
 								<td><?php echo h($product['Product']['qty']); ?>&nbsp;</td>
 								<td><?php echo h($product['Product']['price']); ?>&nbsp;</td>
 								<td class="actions right-align">

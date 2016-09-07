@@ -17,7 +17,8 @@
 						<div class="row">
 							<?php
 								echo $this->Form->input('Product.name', array(
-									'div' => 'input-field col s4'
+									'div' => 'input-field col s4',
+									'label' => 'Product name'
 								));
 								echo $this->Form->input('Product.qty', array(
 									'div' => 'input-field col s4',
