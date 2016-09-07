@@ -13,11 +13,11 @@
 					<div class="row form-container">
 						<div class="row">
 							<div class="col s4">
-								<h6>First name</h6>
+								<h6>Product name</h6>
 								<p><?php echo h($product['Product']['name']); ?></p>
 							</div>
 							<div class="col s4">
-								<h6>Family name</h6>
+								<h6>Quantity</h6>
 								<p><?php echo h($product['Product']['qty']); ?></p>
 							</div>
 							<div class="col s4">
