@@ -14,16 +14,16 @@ class Product extends AppModel {
  */
 	public $displayField = 'description';
 
-/**
- * Validation rules
- *
- * @var array
- */
+	/**
+	 * Validation rules
+	 *
+	 * @var array
+	 */
 	public $validate = array(
 		'qty' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'A numerical value must be entered.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -33,7 +33,7 @@ class Product extends AppModel {
 		'price' => array(
 			'money' => array(
 				'rule' => array('money'),
-				//'message' => 'Your custom message here',
+				'message' => 'A valid price must be entered.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -42,13 +42,11 @@ class Product extends AppModel {
 		),
 	);
 
-	// The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * hasAndBelongsToMany associations
- *
- * @var array
- */
+	/**
+	 * hasAndBelongsToMany associations
+	 *
+	 * @var array
+	 */
 	public $hasAndBelongsToMany = array(
 		'PurchaseOrder' => array(
 			'className' => 'PurchaseOrder',

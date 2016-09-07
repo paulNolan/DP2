@@ -35,7 +35,10 @@ class PagesController extends AppController {
      *
      * @var array
      */
-	public $uses = array();
+	public $uses = array(
+		'Page',
+		'Product'
+	);
 
     /**
      * Displays a view
@@ -78,6 +81,7 @@ class PagesController extends AppController {
 	 * Admin test action
 	 */
 	public function admin_home() {
-
+		$products = $this->Product->find('all');
+		$this->set(compact('products'));
 	}
 }

@@ -15,7 +15,9 @@ class CustomersController extends AppController {
 	 *
 	 * @var array
 	 */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = array(
+		'EntityNavigation'
+	);
 
 	/**
 	 * admin_index method

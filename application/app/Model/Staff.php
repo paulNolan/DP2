@@ -32,7 +32,7 @@
 			'first_name' => array(
 				'notBlank' => array(
 					'rule' => array('notBlank'),
-					'message' => 'First name cannot be blank',
+					'message' => 'First name cannot be blank.',
 					//'allowEmpty' => false,
 					//'required' => false,
 					//'last' => false, // Stop validation after this rule
@@ -42,7 +42,7 @@
 			'surname' => array(
 				'notBlank' => array(
 					'rule' => array('notBlank'),
-					'message' => 'Surname cannot be blank',
+					'message' => 'Surname cannot be blank.',
 					//'allowEmpty' => false,
 					//'required' => false,
 					//'last' => false, // Stop validation after this rule
@@ -52,7 +52,7 @@
 			'phone' => array(
 				'numeric' => array(
 					'rule' => array('numeric'),
-					//'message' => 'Your custom message here',
+					'message' => 'Phone number must consist of numbers only.',
 					//'allowEmpty' => false,
 					//'required' => false,
 					//'last' => false, // Stop validation after this rule
@@ -62,7 +62,7 @@
 			'email' => array(
 				'email' => array(
 					'rule' => array('email'),
-					'message' => 'A valid email must be provided',
+					'message' => 'A valid email must be provided.',
 					//'allowEmpty' => false,
 					//'required' => false,
 					//'last' => false, // Stop validation after this rule
@@ -72,7 +72,7 @@
 			'username' => array(
 				'notBlank' => array(
 					'rule' => array('notBlank'),
-					'message' => 'Username cannot be blank',
+					'message' => 'Username cannot be blank.',
 					//'allowEmpty' => false,
 					//'required' => false,
 					//'last' => false, // Stop validation after this rule
@@ -80,7 +80,7 @@
 				),
 				'minLength' => array(
 					'rule' => array('minLength', 5),
-					'message' => 'Username must be at least 5 characters in length',
+					'message' => 'Username must be at least 5 characters in length.',
 					//'allowEmpty' => false,
 					//'required' => false,
 					//'last' => false, // Stop validation after this rule
@@ -90,7 +90,7 @@
 			'password_hash' => array(
 				'notBlank' => array(
 					'rule' => array('notBlank'),
-					'message' => 'A password must be provided',
+					'message' => 'A password must be provided.',
 					//'allowEmpty' => false,
 					//'required' => false,
 					//'last' => false, // Stop validation after this rule
@@ -98,7 +98,7 @@
 				),
 				'minLength' => array(
 					'rule' => array('minLength', 5),
-					'message' => 'Password must be at least 6 characters in length',
+					'message' => 'Password must be at least 6 characters in length.',
 					//'allowEmpty' => false,
 					//'required' => false,
 					//'last' => false, // Stop validation after this rule
@@ -106,8 +106,6 @@
 				),
 			),
 		);
-
-		// The Associations below have been created with all possible keys, those that are not needed can be removed
 
 		/**
 		 * hasMany associations

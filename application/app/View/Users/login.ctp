@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col s4 offset-s4">
+    <div class="col s8 offset-s2 m8 offset-m2 l4 offset-l4">
         <div id="login-container">
             <div class="login-header teal lighten-2">
                 <h5 class="white-text">Login to <?php echo $application_name; ?></h5>

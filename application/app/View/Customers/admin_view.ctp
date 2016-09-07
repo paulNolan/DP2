@@ -1,59 +1,57 @@
-<div class="customers view">
-<h2><?php echo __('Customer'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($customer['Customer']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('First Name'); ?></dt>
-		<dd>
-			<?php echo h($customer['Customer']['first_name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Surname'); ?></dt>
-		<dd>
-			<?php echo h($customer['Customer']['surname']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Address'); ?></dt>
-		<dd>
-			<?php echo h($customer['Customer']['address']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Phone'); ?></dt>
-		<dd>
-			<?php echo h($customer['Customer']['phone']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Email'); ?></dt>
-		<dd>
-			<?php echo h($customer['Customer']['email']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Medicare Num'); ?></dt>
-		<dd>
-			<?php echo h($customer['Customer']['medicare_num']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($customer['Customer']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo h($customer['Customer']['modified']); ?>
-			&nbsp;
-		</dd>
-	</dl>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Customer'), array('action' => 'edit', $customer['Customer']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Customer'), array('action' => 'delete', $customer['Customer']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $customer['Customer']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Customers'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Customer'), array('action' => 'add')); ?> </li>
-	</ul>
+<div class="container">
+	<div class="row">
+		<?php echo $this->element('Navigation/entity'); ?>
+		<div class="col s9">
+			<div class="row no-margin">
+				<div class="content-header teal lighten-2">
+					<h5 class="white-text">Viewing Customer</h5>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col s12 m12 l12 white z-depth-1">
+					<div class="row form-container">
+						<div class="row">
+							<div class="col s4">
+								<h6>First name</h6>
+								<p><?php echo h($customer['Customer']['first_name']); ?></p>
+							</div>
+							<div class="col s4">
+								<h6>Family name</h6>
+								<p><?php echo h($customer['Customer']['surname']); ?></p>
+							</div>
+							<div class="col s4">
+								<h6>Address</h6>
+								<p><?php echo h($customer['Customer']['address']); ?></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col s4">
+								<h6>Phone number</h6>
+								<p><?php echo h($customer['Customer']['phone']); ?></p>
+							</div>
+							<div class="col s4">
+								<h6>Email</h6>
+								<p><?php echo h($customer['Customer']['email']); ?></p>
+							</div>
+							<div class="col s4">
+								<h6>Medicare number</h6>
+								<p><?php echo h($customer['Customer']['medicare_num']); ?></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col s4">
+								<h6>Created</h6>
+								<p><?php echo date('d F Y @ H:i', strtotime($customer['Customer']['created'])); ?></p>
+							</div>
+							<div class="col s4">
+								<h6>Last modified</h6>
+								<p><?php echo date('d F Y @ H:i', strtotime($customer['Customer']['modified'])); ?></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

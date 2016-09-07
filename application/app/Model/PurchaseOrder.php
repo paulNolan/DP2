@@ -9,11 +9,11 @@ App::uses('AppModel', 'Model');
  */
 class PurchaseOrder extends AppModel {
 
-/**
- * Validation rules
- *
- * @var array
- */
+	/**
+	 * Validation rules
+	 *
+	 * @var array
+	 */
 	public $validate = array(
 		'staff_id' => array(
 			'numeric' => array(
@@ -25,7 +25,7 @@ class PurchaseOrder extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'customers_id' => array(
+		'customer_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -37,13 +37,11 @@ class PurchaseOrder extends AppModel {
 		),
 	);
 
-	// The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * belongsTo associations
- *
- * @var array
- */
+	/**
+	 * belongsTo associations
+	 *
+	 * @var array
+	 */
 	public $belongsTo = array(
 		'Staff' => array(
 			'className' => 'Staff',
@@ -52,20 +50,20 @@ class PurchaseOrder extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Customers' => array(
-			'className' => 'Customers',
-			'foreignKey' => 'customers_id',
+		'Customer' => array(
+			'className' => 'Customer',
+			'foreignKey' => 'customer_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		)
 	);
 
-/**
- * hasAndBelongsToMany associations
- *
- * @var array
- */
+	/**
+	 * hasAndBelongsToMany associations
+	 *
+	 * @var array
+	 */
 	public $hasAndBelongsToMany = array(
 		'Product' => array(
 			'className' => 'Product',

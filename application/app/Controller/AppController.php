@@ -38,6 +38,8 @@ class AppController extends Controller {
 	 * @var array
 	 */
 	public $components = array(
+		'Paginator',
+		'Session',
 		'Flash',
 		'Auth' => array(
 			'loginAction' => array(

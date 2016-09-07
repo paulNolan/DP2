@@ -1,41 +1,24 @@
-<div class="row">
-	<div class="col s12 m4">
-		<div class="card white">
+<?php
+	$counter = 0;
+	foreach ($products as $product):
+		if ($counter%4 == 0) echo '<div class="row">';
+?>
+	<div class="col s12 m3">
+		<div class="card">
+			<div class="card-image">
+				<?php echo $this->Html->image('http://placehold.it/600x300/009688/ffffff'); ?>
+				<span class="card-title"><?php echo $product['Product']['name']; ?></span>
+			</div>
 			<div class="card-content">
-				<span class="card-title">Card Title</span>
-				<p>I am a very simple card. I am good at containing small bits of information.
-					I am convenient because I require little markup to use effectively.</p>
+				<p><?php echo $product['Product']['description']; ?></p>
 			</div>
 			<div class="card-action">
-				<a href="#">This is a link</a>
-				<a href="#">This is a link</a>
+				<?php echo $this->Html->link('View this product', array('controller' => 'Products', 'action' => 'view', $product['Product']['id'])); ?>
 			</div>
 		</div>
 	</div>
-	<div class="col s12 m4">
-		<div class="card white">
-			<div class="card-content">
-				<span class="card-title">Card Title</span>
-				<p>I am a very simple card. I am good at containing small bits of information.
-					I am convenient because I require little markup to use effectively.</p>
-			</div>
-			<div class="card-action">
-				<a href="#">This is a link</a>
-				<a href="#">This is a link</a>
-			</div>
-		</div>
-	</div>
-	<div class="col s12 m4">
-		<div class="card white">
-			<div class="card-content">
-				<span class="card-title">Card Title</span>
-				<p>I am a very simple card. I am good at containing small bits of information.
-					I am convenient because I require little markup to use effectively.</p>
-			</div>
-			<div class="card-action">
-				<a href="#">This is a link</a>
-				<a href="#">This is a link</a>
-			</div>
-		</div>
-	</div>
-</div>
+<?php
+		if ($counter%4 == 0) echo '<div class="row">';
+		$counter++;
+	endforeach;
+?>

@@ -15,7 +15,9 @@ class ProductsController extends AppController {
 	 *
 	 * @var array
 	 */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = array(
+		'EntityNavigation'
+	);
 
 	/**
 	 * admin_index method
@@ -57,8 +59,6 @@ class ProductsController extends AppController {
 				$this->Flash->error(__('The product could not be saved. Please, try again.'));
 			}
 		}
-		$purchaseOrders = $this->Product->PurchaseOrder->find('list');
-		$this->set(compact('purchaseOrders'));
 	}
 
 	/**
@@ -83,8 +83,6 @@ class ProductsController extends AppController {
 			$options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
 			$this->request->data = $this->Product->find('first', $options);
 		}
-		$purchaseOrders = $this->Product->PurchaseOrder->find('list');
-		$this->set(compact('purchaseOrders'));
 	}
 
 	/**
