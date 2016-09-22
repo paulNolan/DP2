@@ -28,6 +28,41 @@
 								));
 							?>
 						</div>
+						<div class="divider" style="margin: 2.5em 0;"></div>
+						<div class="row">
+						<?php
+							echo $this->Html->link('<i class="material-icons">add</i>',
+								'#',
+								array(
+									'escape' => false,
+									'id' => 'add-product',
+									'class' => 'btn-floating btn-small waves-effect waves-light blue-grey darken-2 right tooltipped',
+									'data-position' => 'bottom',
+									'data-delay' => 25,
+									'data-tooltip' => 'Add another product'
+								)
+							);
+						?>
+						</div>
+						<div class="row product-row">
+							<?php
+								echo $this->Form->input('PurchaseOrderLineItem.0.product_id', array(
+									'empty' => 'Choose a product',
+									'div' => 'col s4',
+									'class' => 'browser-default'
+								));
+								echo $this->Form->input('PurchaseOrderLineItem.0.qty', array(
+									'label' => 'Quantity',
+									'div' => 'col s4',
+									'class' => 'browser-default'
+								));
+								echo $this->Form->input('PurchaseOrderLineItem.0.price', array(
+									'label' => 'Price ($)',
+									'div' => 'col s4',
+									'class' => 'browser-default'
+								));
+							?>
+						</div>
 						<div class="row">
 							<?php
 								echo $this->Form->submit('Create', array(

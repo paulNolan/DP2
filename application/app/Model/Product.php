@@ -43,23 +43,23 @@ class Product extends AppModel {
 	);
 
 	/**
-	 * hasAndBelongsToMany associations
+	 * hasMany associations
 	 *
 	 * @var array
 	 */
-	public $hasAndBelongsToMany = array(
-		'PurchaseOrder' => array(
-			'className' => 'PurchaseOrder',
-			'joinTable' => 'purchase_orders_products',
+	public $hasMany = array(
+		'PurchaseOrderLineItem' => array(
+			'className' => 'PurchaseOrderLineItem',
 			'foreignKey' => 'product_id',
-			'associationForeignKey' => 'purchase_order_id',
-			'unique' => 'keepExisting',
+			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
+			'exclusive' => '',
 			'finderQuery' => '',
+			'counterQuery' => ''
 		)
 	);
 
