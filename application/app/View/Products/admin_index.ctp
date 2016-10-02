@@ -6,6 +6,7 @@
 					<h5 class="white-text left">
 						Products
 					</h5>
+
 					<?php
 						echo $this->Html->link('<i class="material-icons">add</i>',
 							array(
@@ -21,6 +22,11 @@
 						);
 					?>
 				</div>
+				<div >
+                    <h6 class="red-text left">
+                        Red rows indicate low stock alert
+                     </h6>
+                </div>
 			</div>
 
 			<div class="row">
@@ -40,18 +46,37 @@
 							<tbody>
 							<?php foreach ($products as $product): ?>
 							<tr>
-								<td><?php echo h($product['Product']['id']); ?>&nbsp;</td>
-								<td><?php echo h($product['Product']['name']); ?>&nbsp;</td>
-								<td><?php
-										echo $this->Text->truncate(trim(strip_tags($product['Product']['description'])), 70,
-										array(
-											'ellipsis' => '...',
-											'exact' => false
-										));
-									?>&nbsp;
-								</td>
-								<td><?php echo h($product['Product']['qty']); ?>&nbsp;</td>
-								<td>$<?php echo number_format($product['Product']['price'], 2); ?>&nbsp;</td>
+
+
+								<?php
+								       if($product['Product']['qty'] < 15)
+								       {
+								          echo "<td style='background-color: #C67171;'>".$product['Product']['id']."</td>";
+								          echo "<td style='background-color: #C67171;'>".$product['Product']['name']."</td>";
+								          echo "<td style='background-color: #C67171;'>".$this->Text->truncate(trim(strip_tags($product['Product']['description'])), 70,
+                                                                                         										array(
+                                                                                         											'ellipsis' => '...',
+                                                                                         											'exact' => false
+                                                                                         										))."</td>";
+								          echo "<td style='background-color: #C67171;'>".$product['Product']['qty']."</td>";
+								          echo "<td style='background-color: #C67171;'>".number_format($product['Product']['price'],2)."</td>";
+
+								       }
+								       else
+								       {
+								            echo "<td>".$product['Product']['id']."</td>";
+								            echo "<td>".$product['Product']['name']."</td>";
+								            echo "<td>".$this->Text->truncate(trim(strip_tags($product['Product']['description'])), 70,
+                                                        										array(
+                                                        											'ellipsis' => '...',
+                                                        											'exact' => false
+                                                        										))."</td>";
+								            echo "<td>".$product['Product']['qty']."</td>";
+								            echo "<td>".number_format($product['Product']['price'],2)."</td>";
+								       }
+
+                                          ?>&nbsp;
+
 								<td class="actions right-align">
 									<?php
 										echo $this->Html->link('Actions', '#', array('data-activates' => 'dropdown-' . $product['Product']['id'], 'class' => 'dropdown-button btn'));
