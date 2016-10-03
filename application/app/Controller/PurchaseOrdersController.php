@@ -52,7 +52,7 @@ class PurchaseOrdersController extends AppController {
 	public function admin_add() {
 		if ($this->request->is('post')) {
 			$this->PurchaseOrder->create();
-			if ($this->PurchaseOrder->save($this->request->data)) {
+			if ($this->PurchaseOrder->saveAssociated($this->request->data)) {
 				$this->Flash->success(__('The purchase order has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
@@ -61,7 +61,7 @@ class PurchaseOrdersController extends AppController {
 		}
 		$staffs = $this->PurchaseOrder->Staff->find('list');
 		$customers = $this->PurchaseOrder->Customer->find('list');
-		$products = $this->PurchaseOrder->Product->find('list');
+		$products = $this->PurchaseOrder->PurchaseOrderLineItem->Product->find('list');
 		$this->set(compact('staffs', 'customers', 'products'));
 	}
 

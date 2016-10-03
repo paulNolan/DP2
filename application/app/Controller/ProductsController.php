@@ -25,6 +25,7 @@ class ProductsController extends AppController {
 	 * @return void
 	 */
 	public function admin_index() {
+
 		$this->Product->recursive = 0;
 		$this->set('products', $this->Paginator->paginate());
 	}
@@ -45,7 +46,7 @@ class ProductsController extends AppController {
 	}
 
 	/**
-	 * admin_add method
+	 * admin_add metho  d
 	 *
 	 * @return void
 	 */
