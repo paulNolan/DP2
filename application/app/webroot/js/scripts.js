@@ -35,5 +35,26 @@
 			totalRows++;
 			return false;
 		});
+
+		$('.product-row').each(function() {
+			var $this = this;
+			$(this).find('.purchase-order-product').change(function() {
+				$(this).prop('disabled', true);
+				var _id = $(this).val(),
+					_select = this;
+				$.ajax({
+					dataType: 'json',
+					url: '/admin/products/get_product/' + _id + '.json'
+				}).done(function(data) {
+					$($this).find('.purchase-order-product-price').val(data.Product.price);
+					$(_select).prop('disabled', false);
+					(data.Product.qty == 0) ? $($this).find('.purchase-order-product-qty').prop('disabled', true).val(0) : $($this).find('.purchase-order-product-qty').prop('disabled', false);
+				}).fail(function() {
+
+				});
+			});
+		});
+
+
 	};
 })(jQuery);

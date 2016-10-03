@@ -16,7 +16,8 @@ class ProductsController extends AppController {
 	 * @var array
 	 */
 	public $components = array(
-		'EntityNavigation'
+		'EntityNavigation',
+		'RequestHandler'
 	);
 
 	/**
@@ -25,7 +26,6 @@ class ProductsController extends AppController {
 	 * @return void
 	 */
 	public function admin_index() {
-
 		$this->Product->recursive = 0;
 		$this->set('products', $this->Paginator->paginate());
 	}
@@ -105,5 +105,20 @@ class ProductsController extends AppController {
 			$this->Flash->error(__('The product could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+	/**
+	 * Lookup method
+	 *
+	 */
+	public function admin_get_product($id) {
+		if (!$this->Product->exists($id)) {
+			throw new NotFoundException(__('Invalid product'));
+		}
+		$options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id), 'contain' => array());
+		$product = $this->Product->find('first', $options);
+
+		$this->set(array('product' => $product, '_serialize' => 'product'));
+//		echo json_encode($product);
 	}
 }

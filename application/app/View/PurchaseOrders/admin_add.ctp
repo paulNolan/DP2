@@ -49,17 +49,20 @@
 								echo $this->Form->input('PurchaseOrderLineItem.0.product_id', array(
 									'empty' => 'Choose a product',
 									'div' => 'col s4',
-									'class' => 'browser-default'
+									'class' => 'browser-default purchase-order-product'
 								));
 								echo $this->Form->input('PurchaseOrderLineItem.0.qty', array(
 									'label' => 'Quantity',
 									'div' => 'col s4',
-									'class' => 'browser-default'
+									'class' => 'browser-default purchase-order-product-qty',
+									'min' => 0,
+									'default' => 0
 								));
 								echo $this->Form->input('PurchaseOrderLineItem.0.price', array(
 									'label' => 'Price ($)',
 									'div' => 'col s4',
-									'class' => 'browser-default'
+									'class' => 'browser-default purchase-order-product-price',
+									'min' => 0,
 								));
 							?>
 						</div>

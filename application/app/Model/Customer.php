@@ -14,6 +14,15 @@ class Customer extends AppModel {
 	public $displayField = 'email';
 
 	/**
+	 * Virtual fields
+	 *
+	 * @var string
+	 */
+	public $virtualFields = array(
+		'full_name' => 'CONCAT(Customer.first_name, " ", Customer.surname)'
+	);
+
+	/**
 	 * Validation rules
 	 *
 	 * @var array

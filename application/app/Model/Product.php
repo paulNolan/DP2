@@ -7,12 +7,33 @@ App::uses('AppModel', 'Model');
  */
 class Product extends AppModel {
 
-/**
- * Display field
- *
- * @var string
- */
+	/**
+	 * Display field
+	 *
+	 * @var string
+	 */
 	public $displayField = 'description';
+
+	/**
+	 * Behaviours
+	 *
+	 * @var array
+	 */
+	public $actsAs = array(
+		'Upload.Upload' => array(
+			'photo' => array(
+				'fields' => array(
+					'dir' => 'photo_dir'
+				),
+				'thumbnailSizes' => array(
+					'xvga' => '1024x768',
+					'vga' => '640x480',
+					'thumb' => '80x80'
+				),
+				'thumbnailMethod' => 'php'
+			)
+		)
+	);
 
 	/**
 	 * Validation rules
@@ -62,5 +83,24 @@ class Product extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+
+	/**
+	 * Get product list.
+	 *
+	 * @var array
+	 */
+	public function getProductList() {
+		$products = $this->find('list', array(
+			'fields' => array(
+				'Product.id',
+				'Product.name',
+			),
+			'order' => array(
+				'Product.name' => 'ASC'
+			)
+		));
+
+		return $products;
+	}
 
 }

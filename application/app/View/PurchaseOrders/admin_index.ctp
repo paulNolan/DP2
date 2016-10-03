@@ -32,6 +32,7 @@
 								<th><?php echo $this->Paginator->sort('id', '#'); ?></th>
 								<th><?php echo $this->Paginator->sort('staff_id', 'Salesperson'); ?></th>
 								<th><?php echo $this->Paginator->sort('customer_id', 'Customer'); ?></th>
+								<th><?php echo $this->Paginator->sort('created', 'Date of Sale'); ?></th>
 								<th class="actions"><?php echo __('Actions'); ?></th>
 							</tr>
 							</thead>
@@ -40,17 +41,23 @@
 							<tr>
 								<td><?php echo h($purchaseOrder['PurchaseOrder']['id']); ?>&nbsp;</td>
 								<td>
-									<?php echo $this->Html->link($purchaseOrder['Staff']['username'], array('controller' => 'staffs', 'action' => 'view', $purchaseOrder['Staff']['id'])); ?>
+									<?php echo $this->Html->link($purchaseOrder['Staff']['full_name'], array('controller' => 'staffs', 'action' => 'view', $purchaseOrder['Staff']['id'])); ?>
 								</td>
 								<td>
-									<?php echo $this->Html->link($purchaseOrder['Customer']['id'], array('controller' => 'customer', 'action' => 'view', $purchaseOrder['Customer']['id'])); ?>
+									<?php echo $this->Html->link($purchaseOrder['Customer']['full_name'], array('controller' => 'customer', 'action' => 'view', $purchaseOrder['Customer']['id'])); ?>
 								</td>
-								<td><?php echo h($purchaseOrder['PurchaseOrder']['created']); ?>&nbsp;</td>
-								<td><?php echo h($purchaseOrder['PurchaseOrder']['modified']); ?>&nbsp;</td>
-								<td class="actions">
-									<?php echo $this->Html->link(__('View'), array('action' => 'view', $purchaseOrder['PurchaseOrder']['id'])); ?>
-									<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $purchaseOrder['PurchaseOrder']['id'])); ?>
-									<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $purchaseOrder['PurchaseOrder']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $purchaseOrder['PurchaseOrder']['id']))); ?>
+								<td><?php echo date('d F Y @ H:i:s', strtotime($purchaseOrder['PurchaseOrder']['created'])); ?>&nbsp;</td>
+								<td class="actions right-align">
+									<?php
+										echo $this->Html->link('Actions', '#', array('data-activates' => 'dropdown-' . $purchaseOrder['PurchaseOrder']['id'], 'class' => 'dropdown-button btn'));
+									?>
+									<ul id="dropdown-<?php echo $purchaseOrder['PurchaseOrder']['id']; ?>" class="dropdown-content">
+										<?php
+											echo $this->Html->tag('li', $this->Html->link(__('View'), array('action' => 'view', $purchaseOrder['PurchaseOrder']['id'])));
+											echo $this->Html->tag('li', $this->Html->link(__('Edit'), array('action' => 'edit', $purchaseOrder['PurchaseOrder']['id'])));
+											echo $this->Html->tag('li', $this->Form->postLink(__('Delete'), array('action' => 'delete', $purchaseOrder['PurchaseOrder']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $purchaseOrder['PurchaseOrder']['id']))));
+										?>
+									</ul>
 								</td>
 							</tr>
 							<?php endforeach; ?>

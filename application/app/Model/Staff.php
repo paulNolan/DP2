@@ -24,6 +24,15 @@
 		public $displayField = 'username';
 
 		/**
+		 * Virtual fields
+		 *
+		 * @var string
+		 */
+		public $virtualFields = array(
+			'full_name' => 'CONCAT(Staff.first_name, " ", Staff.surname)'
+		);
+
+		/**
 		 * Validation rules
 		 *
 		 * @var array
@@ -142,6 +151,25 @@
 				);
 			}
 			return true;
+		}
+
+		/**
+		 * Get product list.
+		 *
+		 * @var array
+		 */
+		public function getList() {
+			$staff = $this->find('list', array(
+				'fields' => array(
+					'Staff.id',
+					'Staff.full_name'
+				),
+				'order' => array(
+					'Staff.id' => 'ASC'
+				)
+			));
+
+			return $staff;
 		}
 
 	}

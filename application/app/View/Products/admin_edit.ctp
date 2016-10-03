@@ -12,8 +12,9 @@
 				<div class="col s12 m12 l12 white z-depth-1">
 					<div class="row form-container">
 						<?php
-							echo $this->Form->create('Product', array('class' => 'col s12'));
+							echo $this->Form->create('Product', array('type' => 'file', 'class' => 'col s12'));
 							echo $this->Form->hidden('Product.id');
+							echo $this->Form->hidden('Product.photo_dir');
 						?>
 						<div class="row">
 							<?php
@@ -35,6 +36,15 @@
 						<div class="row">
 							<?php
 								echo $this->Form->input('Product.description', array(
+									'div' => 'input-field col s12',
+									'class' => 'materialize-textarea'
+								));
+							?>
+						</div>
+						<div class="row">
+							<?php
+								echo $this->Form->input('Product.photo', array(
+									'type' => 'file',
 									'div' => 'input-field col s12',
 									'class' => 'materialize-textarea'
 								));
