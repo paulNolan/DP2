@@ -54,7 +54,7 @@
 											echo $this->Form->input('PurchaseOrderLineItem.' . $counter . '.product_id', array(
 												'empty' => 'Choose a product',
 												'div' => 'col s4',
-												'class' => 'browser-default purchase-order-product-product'
+												'class' => 'browser-default purchase-order-product'
 											));
 											echo $this->Form->input('PurchaseOrderLineItem.' . $counter . '.qty', array(
 												'label' => 'Quantity',

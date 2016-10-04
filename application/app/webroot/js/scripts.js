@@ -31,7 +31,8 @@
 
 
 		var rowCount = 1;
-		var firstRow = $('.product-row');
+		var firstRow = $('.product-row:first');
+		var lastRow = $('.product-row:last');
 		$('#add-product').click(function() {
 			var newRow = firstRow.clone();
 			newRow.find('.error-message').remove();
@@ -40,7 +41,7 @@
 			newRow.find('select').prop('id', newRow.find('.purchase-order-product').prop('id').replace(/0/, rowCount)).prop('name', newRow.find('.purchase-order-product').prop('name').replace(/0/, rowCount)).val('');
 			newRow.find('.purchase-order-product-qty').prop('id', newRow.find('.purchase-order-product-qty').prop('id').replace(/0/, rowCount)).prop('name', newRow.find('.purchase-order-product-qty').prop('name').replace(/0/, rowCount)).val(0);
 			newRow.find('.purchase-order-product-price').prop('id', newRow.find('.purchase-order-product-price').prop('id').replace(/0/, rowCount)).prop('name', newRow.find('.purchase-order-product-price').prop('name').replace(/0/, rowCount)).val('');
-			firstRow.after(newRow);
+			lastRow.after(newRow);
 			rowCount++;
 			initPurchaseOrderProducts();
 			return false;

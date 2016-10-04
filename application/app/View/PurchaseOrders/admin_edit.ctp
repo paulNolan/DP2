@@ -49,12 +49,12 @@
 							$counter = 0;
 							foreach ($this->request->data['PurchaseOrderLineItem'] as $item):
 						?>
-						<div class="row product-row">
+						<div class="row product-row product-row-<?php echo $counter; ?>">
 							<?php
 								echo $this->Form->input('PurchaseOrderLineItem.' . $counter . '.product_id', array(
 									'empty' => 'Choose a product',
 									'div' => 'col s4',
-									'class' => 'browser-default purchase-order-product-product'
+									'class' => 'browser-default purchase-order-product'
 								));
 								echo $this->Form->input('PurchaseOrderLineItem.' . $counter . '.qty', array(
 									'label' => 'Quantity',
