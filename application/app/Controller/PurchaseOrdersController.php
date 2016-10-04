@@ -73,7 +73,7 @@ class PurchaseOrdersController extends AppController {
 				$this->Flash->success(__('New purchase order record created successfully.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('Could not create new purchase order record.<br>Please check fix the errors below and try again.'));
+				$this->Flash->error(__('Could not create new purchase order record.<br>Please correct the errors below and try again.'));
 			}
 		}
 		$staffs = $this->PurchaseOrder->Staff->getList();
@@ -98,7 +98,7 @@ class PurchaseOrdersController extends AppController {
 				$this->Flash->success(__('Purchase Order record updated successfully.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('Could not update purchase order record.<br>Please check fix the errors below and try again.'));
+				$this->Flash->error(__('Could not update purchase order record.<br>Please correct the errors below and try again.'));
 			}
 		} else {
 			$options = array('conditions' => array('PurchaseOrder.' . $this->PurchaseOrder->primaryKey => $id));
@@ -126,7 +126,7 @@ class PurchaseOrdersController extends AppController {
 		if ($this->PurchaseOrder->delete()) {
 			$this->Flash->success(__('Purchase Order record deleted successfully.'));
 		} else {
-			$this->Flash->error(__('Could not delete purchase order record.<br>Please check fix the errors below and try again.'));
+			$this->Flash->error(__('Could not delete purchase order record.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

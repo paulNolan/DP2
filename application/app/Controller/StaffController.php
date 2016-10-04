@@ -68,7 +68,7 @@ class StaffController extends AppController {
 				$this->Flash->success(__('New staff record created successfully.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('Could not create new staff record.<br>Please check fix the errors below and try again.'));
+				$this->Flash->error(__('Could not create new staff record.<br>Please correct the errors below and try again.'));
 			}
 		}
 	}
@@ -89,7 +89,7 @@ class StaffController extends AppController {
 				$this->Flash->success(__('Staff record updated successfully.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('Could not update staff record.<br>Please check fix the errors below and try again.'));
+				$this->Flash->error(__('Could not update staff record.<br>Please correct the errors below and try again.'));
 			}
 		} else {
 			$options = array('conditions' => array('Staff.' . $this->Staff->primaryKey => $id));
@@ -113,7 +113,7 @@ class StaffController extends AppController {
 		if ($this->Staff->delete()) {
 			$this->Flash->success(__('Staff record deleted successfully.'));
 		} else {
-			$this->Flash->error(__('Could not delete staff record.<br>Please check fix the errors below and try again.'));
+			$this->Flash->error(__('Could not delete staff record.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

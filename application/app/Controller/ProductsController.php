@@ -57,7 +57,7 @@ class ProductsController extends AppController {
 				$this->Flash->success(__('New product record created successfully.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('Could not create new product record.<br>Please check fix the errors below and try again.'));
+				$this->Flash->error(__('Could not create new product record.<br>Please correct the errors below and try again.'));
 			}
 		}
 	}
@@ -78,7 +78,7 @@ class ProductsController extends AppController {
 				$this->Flash->success(__('Product record updated successfully.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('Could not update product record.<br>Please check fix the errors below and try again.'));
+				$this->Flash->error(__('Could not update product record.<br>Please correct the errors below and try again.'));
 			}
 		} else {
 			$options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
@@ -102,7 +102,7 @@ class ProductsController extends AppController {
 		if ($this->Product->delete()) {
 			$this->Flash->success(__('Product record deleted successfully.'));
 		} else {
-			$this->Flash->error(__('Could not delete product record.<br>Please check fix the errors below and try again.'));
+			$this->Flash->error(__('Could not delete product record.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
