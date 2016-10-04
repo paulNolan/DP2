@@ -1,58 +1,74 @@
-<div class="customers index">
-	<h2><?php echo __('Customers'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<thead>
-	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('first_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('surname'); ?></th>
-			<th><?php echo $this->Paginator->sort('address'); ?></th>
-			<th><?php echo $this->Paginator->sort('phone'); ?></th>
-			<th><?php echo $this->Paginator->sort('email'); ?></th>
-			<th><?php echo $this->Paginator->sort('medicare_num'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	</thead>
-	<tbody>
-	<?php foreach ($customers as $customer): ?>
-	<tr>
-		<td><?php echo h($customer['Customer']['id']); ?>&nbsp;</td>
-		<td><?php echo h($customer['Customer']['first_name']); ?>&nbsp;</td>
-		<td><?php echo h($customer['Customer']['surname']); ?>&nbsp;</td>
-		<td><?php echo h($customer['Customer']['address']); ?>&nbsp;</td>
-		<td><?php echo h($customer['Customer']['phone']); ?>&nbsp;</td>
-		<td><?php echo h($customer['Customer']['email']); ?>&nbsp;</td>
-		<td><?php echo h($customer['Customer']['medicare_num']); ?>&nbsp;</td>
-		<td><?php echo h($customer['Customer']['created']); ?>&nbsp;</td>
-		<td><?php echo h($customer['Customer']['modified']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $customer['Customer']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $customer['Customer']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $customer['Customer']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $customer['Customer']['id']))); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</tbody>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-		'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
+<div class="container">
+	<div class="row">
+		<div class="col s12">
+			<div class="row no-margin">
+				<div class="content-header teal lighten-2">
+					<h5 class="white-text left">
+						Staff
+					</h5>
+					<?php
+						echo $this->Html->link('<i class="material-icons">add</i>',
+							array(
+								'action' => 'add',
+							),
+							array(
+								'escape' => false,
+								'class' => 'btn-floating btn-small waves-effect waves-light blue-grey darken-2 right tooltipped',
+								'data-position' => 'bottom',
+								'data-delay' => 25,
+								'data-tooltip' => 'Add record'
+							)
+						);
+					?>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col s12 m12 l12 white z-depth-1">
+					<div class="data-table">
+						<table class="responsive-table">
+							<thead>
+							<tr>
+								<th><?php echo $this->Paginator->sort('#'); ?></th>
+								<th><?php echo $this->Paginator->sort('first_name', 'Given Name'); ?></th>
+								<th><?php echo $this->Paginator->sort('surname', 'Family Name'); ?></th>
+								<th><?php echo $this->Paginator->sort('address'); ?></th>
+								<th><?php echo $this->Paginator->sort('phone'); ?></th>
+								<th><?php echo $this->Paginator->sort('email'); ?></th>
+								<th><?php echo $this->Paginator->sort('store_location'); ?></th>
+								<th class="actions">&nbsp;</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php foreach ($staffs as $staff): ?>
+								<tr>
+									<td><?php echo h($staff['Staff']['id']); ?>&nbsp;</td>
+									<td><?php echo h($staff['Staff']['first_name']); ?>&nbsp;</td>
+									<td><?php echo h($staff['Staff']['surname']); ?>&nbsp;</td>
+									<td><?php echo h($staff['Staff']['address']); ?>&nbsp;</td>
+									<td><?php echo h($staff['Staff']['phone']); ?>&nbsp;</td>
+									<td><?php echo h($staff['Staff']['email']); ?>&nbsp;</td>
+									<td><?php echo h($staff['Staff']['store_location']); ?>&nbsp;</td>
+									<td class="actions right-align">
+										<?php
+											echo $this->Html->link('Actions', '#', array('data-activates' => 'dropdown-' . $staff['Staff']['id'], 'class' => 'dropdown-button btn'));
+										?>
+										<ul id="dropdown-<?php echo $staff['Staff']['id']; ?>" class="dropdown-content">
+											<?php
+												echo $this->Html->tag('li', $this->Html->link(__('View'), array('action' => 'view', $staff['Staff']['id'])));
+												echo $this->Html->tag('li', $this->Html->link(__('Edit'), array('action' => 'edit', $staff['Staff']['id'])));
+												echo $this->Html->tag('li', $this->Form->postLink(__('Delete'), array('action' => 'delete', $staff['Staff']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $staff['Staff']['id']))));
+											?>
+										</ul>
+									</td>
+								</tr>
+							<?php endforeach; ?>
+							</tbody>
+						</table>
+						<?php echo $this->element('Navigation/pagination'); ?>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Customer'), array('action' => 'add')); ?></li>
-	</ul>
 </div>

@@ -44,28 +44,33 @@
 							);
 						?>
 						</div>
-						<div class="row product-row">
-							<?php
-								echo $this->Form->input('PurchaseOrderLineItem.0.product_id', array(
-									'empty' => 'Choose a product',
-									'div' => 'col s4',
-									'class' => 'browser-default purchase-order-product'
-								));
-								echo $this->Form->input('PurchaseOrderLineItem.0.qty', array(
-									'label' => 'Quantity',
-									'div' => 'col s4',
-									'class' => 'browser-default purchase-order-product-qty',
-									'min' => 0,
-									'default' => 0
-								));
-								echo $this->Form->input('PurchaseOrderLineItem.0.price', array(
-									'label' => 'Price ($)',
-									'div' => 'col s4',
-									'class' => 'browser-default purchase-order-product-price',
-									'min' => 0,
-								));
-							?>
-						</div>
+						<?php
+							$counter = 0;
+							foreach ($this->request->data['PurchaseOrderLineItem'] as $item):
+								?>
+								<div class="row product-row">
+									<?php
+										echo $this->Form->input('PurchaseOrderLineItem.' . $counter . '.product_id', array(
+											'empty' => 'Choose a product',
+											'div' => 'col s4',
+											'class' => 'browser-default'
+										));
+										echo $this->Form->input('PurchaseOrderLineItem.' . $counter . '.qty', array(
+											'label' => 'Quantity',
+											'div' => 'col s4',
+											'class' => 'browser-default'
+										));
+										echo $this->Form->input('PurchaseOrderLineItem.' . $counter . '.price', array(
+											'label' => 'Price ($)',
+											'div' => 'col s4',
+											'class' => 'browser-default'
+										));
+									?>
+								</div>
+								<?php
+								$counter++;
+							endforeach;
+						?>
 						<div class="row">
 							<?php
 								echo $this->Form->submit('Create', array(

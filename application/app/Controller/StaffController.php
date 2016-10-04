@@ -18,9 +18,7 @@ class StaffController extends AppController {
 	 * @var array
 	 */
 	public $components = array(
-		'Paginator',
-		'Session',
-		'Flash'
+		'EntityNavigation'
 	);
 
 	/**
@@ -67,10 +65,10 @@ class StaffController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Staff->create();
 			if ($this->Staff->save($this->request->data)) {
-				$this->Flash->success(__('The staff has been saved.'));
+				$this->Flash->success(__('New staff record created successfully.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The staff could not be saved. Please, try again.'));
+				$this->Flash->error(__('Could not create new staff record.<br>Please check fix the errors below and try again.'));
 			}
 		}
 	}
@@ -88,10 +86,10 @@ class StaffController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Staff->save($this->request->data)) {
-				$this->Flash->success(__('The staff has been saved.'));
+				$this->Flash->success(__('Staff record updated successfully.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The staff could not be saved. Please, try again.'));
+				$this->Flash->error(__('Could not update staff record.<br>Please check fix the errors below and try again.'));
 			}
 		} else {
 			$options = array('conditions' => array('Staff.' . $this->Staff->primaryKey => $id));
@@ -113,9 +111,9 @@ class StaffController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Staff->delete()) {
-			$this->Flash->success(__('The staff has been deleted.'));
+			$this->Flash->success(__('Staff record deleted successfully.'));
 		} else {
-			$this->Flash->error(__('The staff could not be deleted. Please, try again.'));
+			$this->Flash->error(__('Could not delete staff record.<br>Please check fix the errors below and try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

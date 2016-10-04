@@ -109,6 +109,10 @@ form .error-message {
     color: #F44336;
 }
 
+form .form-error {
+    border-color: #F44336;
+}
+
 .no-margin {
     margin: 0;
 }

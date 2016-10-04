@@ -18,7 +18,7 @@
 							array(
 								'admin' => false, 'controller' => 'users', 'action' => 'logout'),
 							array(
-								'class' => 'btn waves-effect waves-light'
+								'class' => 'btn'
 							));
 					?>
 				</li>
@@ -28,6 +28,16 @@
 </header>
 
 <section id="main" class="blue-grey lighten-4">
+	<div class="container">
+		<div class="row">
+			<div class="col s12">
+				<div class="row no-margin">
+					<?php echo $this->Flash->render(); ?>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<?php echo $content_for_layout; ?>
 </section>
 

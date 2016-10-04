@@ -48,6 +48,14 @@
 				),
 				'class' => array()
 			),
+			'Staff' => array(
+				'url' => array(
+					'admin' => true,
+					'controller' => 'staff',
+					'action' => 'index'
+				),
+				'class' => array()
+			),
 		);
 
 		/**

@@ -55,22 +55,25 @@ class PurchaseOrdersController extends AppController {
 			$continue = true;
 			$total = 0.00;
 			foreach ($this->request->data['PurchaseOrderLineItem'] as $index => $item) {
-				$this->request->data['PurchaseOrder']['total'] += ($item['price'] * $item['qty']);
+				$total += ($item['price'] * $item['qty']);
 				$product = $this->PurchaseOrder->PurchaseOrderLineItem->Product->findById($item['product_id']);
-				if ($product['Product']['qty'] == 0) {
+				if ($product['Product']['qty'] == 0 || $item['qty'] > $product['Product']['qty']) {
 					$continue = false;
-					$this->PurchaseOrder->PurchaseOrderLineItem->validationErrors[$index]['product_id'] = 'Insufficient quantity for this product';
+					$this->PurchaseOrder->PurchaseOrderLineItem->invalidate('0.product_id');
+					$this->PurchaseOrder->PurchaseOrderLineItem->validationErrors[$index]['product_id'] = 'Insufficient quantity available for this product';
 				}
 				else if ($item['qty'] <= 0) {
 					$continue = false;
+					$this->PurchaseOrder->PurchaseOrderLineItem->invalidate('0.qty');
 					$this->PurchaseOrder->PurchaseOrderLineItem->validationErrors[$index]['qty'] = 'A quantity greater than zero is required';
 				}
 			}
+			$this->request->data['PurchaseOrder']['total'] = $total;
 			if ($continue and $this->PurchaseOrder->saveAssociated($this->request->data)) {
-				$this->Flash->success(__('The purchase order has been saved.'));
+				$this->Flash->success(__('New purchase order record created successfully.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The purchase order could not be saved. Please, try again.'));
+				$this->Flash->error(__('Could not create new purchase order record.<br>Please check fix the errors below and try again.'));
 			}
 		}
 		$staffs = $this->PurchaseOrder->Staff->getList();
@@ -92,10 +95,10 @@ class PurchaseOrdersController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->PurchaseOrder->save($this->request->data)) {
-				$this->Flash->success(__('The purchase order has been saved.'));
+				$this->Flash->success(__('Purchase Order record updated successfully.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The purchase order could not be saved. Please, try again.'));
+				$this->Flash->error(__('Could not update purchase order record.<br>Please check fix the errors below and try again.'));
 			}
 		} else {
 			$options = array('conditions' => array('PurchaseOrder.' . $this->PurchaseOrder->primaryKey => $id));
@@ -121,9 +124,9 @@ class PurchaseOrdersController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->PurchaseOrder->delete()) {
-			$this->Flash->success(__('The purchase order has been deleted.'));
+			$this->Flash->success(__('Purchase Order record deleted successfully.'));
 		} else {
-			$this->Flash->error(__('The purchase order could not be deleted. Please, try again.'));
+			$this->Flash->error(__('Could not delete purchase order record.<br>Please check fix the errors below and try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

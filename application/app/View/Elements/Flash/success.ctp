@@ -1,0 +1,1 @@
+<div class="flash red teal accent-2"><?php echo $message; ?></div>

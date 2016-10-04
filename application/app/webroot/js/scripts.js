@@ -34,10 +34,12 @@
 		var firstRow = $('.product-row');
 		$('#add-product').click(function() {
 			var newRow = firstRow.clone();
+			newRow.find('.error-message').remove();
+			newRow.find('.form-error').removeClass('form-error');
 			newRow.addClass('product-row-' + rowCount);
-			newRow.find('select').prop('id', newRow.find('.purchase-order-product').prop('id').replace(/0/, rowCount)).prop('name', newRow.find('.purchase-order-product').prop('name').replace(/0/, rowCount));
-			newRow.find('.purchase-order-product-qty').prop('id', newRow.find('.purchase-order-product-qty').prop('id').replace(/0/, rowCount)).prop('name', newRow.find('.purchase-order-product-qty').prop('name').replace(/0/, rowCount));
-			newRow.find('.purchase-order-product-price').prop('id', newRow.find('.purchase-order-product-price').prop('id').replace(/0/, rowCount)).prop('name', newRow.find('.purchase-order-product-price').prop('name').replace(/0/, rowCount));
+			newRow.find('select').prop('id', newRow.find('.purchase-order-product').prop('id').replace(/0/, rowCount)).prop('name', newRow.find('.purchase-order-product').prop('name').replace(/0/, rowCount)).val('');
+			newRow.find('.purchase-order-product-qty').prop('id', newRow.find('.purchase-order-product-qty').prop('id').replace(/0/, rowCount)).prop('name', newRow.find('.purchase-order-product-qty').prop('name').replace(/0/, rowCount)).val(0);
+			newRow.find('.purchase-order-product-price').prop('id', newRow.find('.purchase-order-product-price').prop('id').replace(/0/, rowCount)).prop('name', newRow.find('.purchase-order-product-price').prop('name').replace(/0/, rowCount)).val('');
 			firstRow.after(newRow);
 			rowCount++;
 			initPurchaseOrderProducts();

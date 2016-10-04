@@ -53,10 +53,10 @@ class CustomersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Customer->create();
 			if ($this->Customer->save($this->request->data)) {
-				$this->Flash->success(__('The customer has been saved.'));
+				$this->Flash->success(__('New customer record created successfully.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The customer could not be saved. Please, try again.'));
+				$this->Flash->error(__('Could not create new customer record.<br>Please check fix the errors below and try again.'));
 			}
 		}
 	}
@@ -74,10 +74,10 @@ class CustomersController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Customer->save($this->request->data)) {
-				$this->Flash->success(__('The customer has been saved.'));
+				$this->Flash->success(__('Customer record updated successfully.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The customer could not be saved. Please, try again.'));
+				$this->Flash->error(__('Could not update customer record.<br>Please check fix the errors below and try again.'));
 			}
 		} else {
 			$options = array('conditions' => array('Customer.' . $this->Customer->primaryKey => $id));
@@ -99,9 +99,9 @@ class CustomersController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Customer->delete()) {
-			$this->Flash->success(__('The customer has been deleted.'));
+			$this->Flash->success(__('Customer record deleted successfully.'));
 		} else {
-			$this->Flash->error(__('The customer could not be deleted. Please, try again.'));
+			$this->Flash->error(__('Could delete customer record.<br>Please check fix the errors below and try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

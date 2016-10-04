@@ -54,10 +54,10 @@ class ProductsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Product->create();
 			if ($this->Product->save($this->request->data)) {
-				$this->Flash->success(__('The product has been saved.'));
+				$this->Flash->success(__('New product record created successfully.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The product could not be saved. Please, try again.'));
+				$this->Flash->error(__('Could not create new product record.<br>Please check fix the errors below and try again.'));
 			}
 		}
 	}
@@ -75,10 +75,10 @@ class ProductsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Product->save($this->request->data)) {
-				$this->Flash->success(__('The product has been saved.'));
+				$this->Flash->success(__('Product record updated successfully.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The product could not be saved. Please, try again.'));
+				$this->Flash->error(__('Could not update product record.<br>Please check fix the errors below and try again.'));
 			}
 		} else {
 			$options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
@@ -100,9 +100,9 @@ class ProductsController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Product->delete()) {
-			$this->Flash->success(__('The product has been deleted.'));
+			$this->Flash->success(__('Product record deleted successfully.'));
 		} else {
-			$this->Flash->error(__('The product could not be deleted. Please, try again.'));
+			$this->Flash->error(__('Could not delete product record.<br>Please check fix the errors below and try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
