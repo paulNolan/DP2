@@ -45,31 +45,56 @@
 						?>
 						</div>
 						<?php
-							$counter = 0;
-							foreach ($this->request->data['PurchaseOrderLineItem'] as $item):
-								?>
-								<div class="row product-row">
-									<?php
-										echo $this->Form->input('PurchaseOrderLineItem.' . $counter . '.product_id', array(
-											'empty' => 'Choose a product',
-											'div' => 'col s4',
-											'class' => 'browser-default'
-										));
-										echo $this->Form->input('PurchaseOrderLineItem.' . $counter . '.qty', array(
-											'label' => 'Quantity',
-											'div' => 'col s4',
-											'class' => 'browser-default'
-										));
-										echo $this->Form->input('PurchaseOrderLineItem.' . $counter . '.price', array(
-											'label' => 'Price ($)',
-											'div' => 'col s4',
-											'class' => 'browser-default'
-										));
+							if (isset($this->request->data['PurchaseOrderLineItem']) and sizeof($this->request->data['PurchaseOrderLineItem']) > 0) {
+								$counter = 0;
+								foreach ($this->request->data['PurchaseOrderLineItem'] as $item):
 									?>
-								</div>
-								<?php
-								$counter++;
-							endforeach;
+									<div class="row product-row">
+										<?php
+											echo $this->Form->input('PurchaseOrderLineItem.' . $counter . '.product_id', array(
+												'empty' => 'Choose a product',
+												'div' => 'col s4',
+												'class' => 'browser-default'
+											));
+											echo $this->Form->input('PurchaseOrderLineItem.' . $counter . '.qty', array(
+												'label' => 'Quantity',
+												'div' => 'col s4',
+												'class' => 'browser-default'
+											));
+											echo $this->Form->input('PurchaseOrderLineItem.' . $counter . '.price', array(
+												'label' => 'Price ($)',
+												'div' => 'col s4',
+												'class' => 'browser-default'
+											));
+										?>
+									</div>
+									<?php
+									$counter++;
+								endforeach;
+							}
+							else {
+						?>
+						<div class="row product-row">
+							<?php
+								echo $this->Form->input('PurchaseOrderLineItem.0.product_id', array(
+									'empty' => 'Choose a product',
+									'div' => 'col s4',
+									'class' => 'browser-default'
+								));
+								echo $this->Form->input('PurchaseOrderLineItem.0.qty', array(
+									'label' => 'Quantity',
+									'div' => 'col s4',
+									'class' => 'browser-default'
+								));
+								echo $this->Form->input('PurchaseOrderLineItem.0.price', array(
+									'label' => 'Price ($)',
+									'div' => 'col s4',
+									'class' => 'browser-default'
+								));
+							?>
+						</div>
+						<?php
+							}
 						?>
 						<div class="row">
 							<?php
