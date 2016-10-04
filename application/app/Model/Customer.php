@@ -83,4 +83,23 @@ class Customer extends AppModel {
 			)
 		),
 	);
+
+	/**
+	 * Get customer list.
+	 *
+	 * @var array
+	 */
+	public function getList() {
+		$customers = $this->find('list', array(
+			'fields' => array(
+				'Customer.id',
+				'Customer.full_name'
+			),
+			'order' => array(
+				'Customer.id' => 'ASC'
+			)
+		));
+
+		return $customers;
+	}
 }

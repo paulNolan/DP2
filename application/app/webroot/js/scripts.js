@@ -1,41 +1,7 @@
 (function($) {
-	window.onload = function() {
-		$('#preloader').delay(1000).fadeOut('fast', function () {
-			$(this).remove();
-		});
 
-		$('select').material_select();
-
-
-		var rowCount = 1;
-		var firstRow = $('.product-row');
-		$('#add-product').click(function() {
-			var newRow = firstRow.clone();
-			newRow.addClass('product-row-' + rowCount);
-			$('.product-row').children('.col').each(function() {
-				var name, id;
-				if ($(this).contains('select')) {
-					name = $(this).children('select').attr('name');
-					id = $(this).children('select').attr('id');
-					console.log(id);
-					name = name.replace(/0/, rowCount);
-					id = id.replace(/0/, rowCount);
-					$(this).children('select').attr('name', name);
-				}
-				else if ($(this).contains('input')) {
-					name = $(this).children('input').attr('name');
-					id = $(this).children('input').attr('id');
-					console.log(id);
-					name = name.replace(/0/, rowCount);
-					id = id.replace(/0/, rowCount);
-					$(this).children('input').attr('name', name);
-				}
-			});
-			firstRow.after(newRow);
-			totalRows++;
-			return false;
-		});
-
+	function initPurchaseOrderProducts() {
+		$('.purchase-order-product').unbind();
 		$('.product-row').each(function() {
 			var $this = this;
 			$(this).find('.purchase-order-product').change(function() {
@@ -54,7 +20,31 @@
 				});
 			});
 		});
-
-
 	};
+
+	window.onload = function() {
+		$('#preloader').delay(1000).fadeOut('fast', function () {
+			$(this).remove();
+		});
+
+		$('select').material_select();
+
+
+		var rowCount = 1;
+		var firstRow = $('.product-row');
+		$('#add-product').click(function() {
+			var newRow = firstRow.clone();
+			newRow.addClass('product-row-' + rowCount);
+			newRow.find('select').prop('id', newRow.find('.purchase-order-product').prop('id').replace(/0/, rowCount)).prop('name', newRow.find('.purchase-order-product').prop('name').replace(/0/, rowCount));
+			newRow.find('.purchase-order-product-qty').prop('id', newRow.find('.purchase-order-product-qty').prop('id').replace(/0/, rowCount)).prop('name', newRow.find('.purchase-order-product-qty').prop('name').replace(/0/, rowCount));
+			newRow.find('.purchase-order-product-price').prop('id', newRow.find('.purchase-order-product-price').prop('id').replace(/0/, rowCount)).prop('name', newRow.find('.purchase-order-product-price').prop('name').replace(/0/, rowCount));
+			firstRow.after(newRow);
+			rowCount++;
+			initPurchaseOrderProducts();
+			return false;
+		});
+
+		initPurchaseOrderProducts();
+	};
+
 })(jQuery);

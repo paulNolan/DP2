@@ -53,7 +53,9 @@ class PurchaseOrdersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->PurchaseOrder->create();
 			$continue = true;
+			$total = 0.00;
 			foreach ($this->request->data['PurchaseOrderLineItem'] as $index => $item) {
+				$this->request->data['PurchaseOrder']['total'] += ($item['price'] * $item['qty']);
 				$product = $this->PurchaseOrder->PurchaseOrderLineItem->Product->findById($item['product_id']);
 				if ($product['Product']['qty'] == 0) {
 					$continue = false;
@@ -72,7 +74,7 @@ class PurchaseOrdersController extends AppController {
 			}
 		}
 		$staffs = $this->PurchaseOrder->Staff->getList();
-		$customers = $this->PurchaseOrder->Customer->find('list');
+		$customers = $this->PurchaseOrder->Customer->getList();
 		$products = $this->PurchaseOrder->PurchaseOrderLineItem->Product->getProductList();
 		$this->set(compact('staffs', 'customers', 'products'));
 	}
@@ -99,8 +101,8 @@ class PurchaseOrdersController extends AppController {
 			$options = array('conditions' => array('PurchaseOrder.' . $this->PurchaseOrder->primaryKey => $id));
 			$this->request->data = $this->PurchaseOrder->find('first', $options);
 		}
-		$staffs = $this->PurchaseOrder->Staff->find('list');
-		$customers = $this->PurchaseOrder->Customer->find('list');
+		$staffs = $this->PurchaseOrder->Staff->getList();
+		$customers = $this->PurchaseOrder->Customer->getList();
 		$products = $this->PurchaseOrder->PurchaseOrderLineItem->Product->getProductList();
 		$this->set(compact('staffs', 'customers', 'products'));
 	}

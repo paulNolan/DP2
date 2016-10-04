@@ -154,7 +154,7 @@
 		}
 
 		/**
-		 * Get product list.
+		 * Get staff list.
 		 *
 		 * @var array
 		 */

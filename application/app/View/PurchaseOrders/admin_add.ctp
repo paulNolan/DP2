@@ -70,7 +70,7 @@
 							<?php
 								echo $this->Form->submit('Create', array(
 									'div' => 'input-field col s12',
-									'class' => 'waves-effect waves-light btn'
+									'class' => 'btn'
 								));
 							?>
 						</div>
