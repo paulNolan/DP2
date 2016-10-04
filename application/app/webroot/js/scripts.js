@@ -5,19 +5,21 @@
 		$('.product-row').each(function() {
 			var $this = this;
 			$(this).find('.purchase-order-product').change(function() {
-				$(this).prop('disabled', true);
-				var _id = $(this).val(),
-					_select = this;
-				$.ajax({
-					dataType: 'json',
-					url: '/admin/products/get_product/' + _id + '.json'
-				}).done(function(data) {
-					$($this).find('.purchase-order-product-price').val(data.Product.price);
-					$(_select).prop('disabled', false);
-					(data.Product.qty == 0) ? $($this).find('.purchase-order-product-qty').prop('disabled', true).val(0) : $($this).find('.purchase-order-product-qty').prop('disabled', false);
-				}).fail(function() {
+				if ($(this).val()) {
+					$(this).prop('disabled', true);
+					var _id = $(this).val(),
+						_select = this;
+					$.ajax({
+						dataType: 'json',
+						url: '/admin/products/get_product/' + _id + '.json'
+					}).done(function(data) {
+						$($this).find('.purchase-order-product-price').val(data.Product.price);
+						$(_select).prop('disabled', false);
+						(data.Product.qty == 0) ? $($this).find('.purchase-order-product-qty').prop('disabled', true).val(0) : $($this).find('.purchase-order-product-qty').prop('disabled', false);
+					}).fail(function() {
 
-				});
+					});
+				}
 			});
 		});
 	};
@@ -42,6 +44,7 @@
 			newRow.find('.purchase-order-product-qty').prop('id', newRow.find('.purchase-order-product-qty').prop('id').replace(/0/, rowCount)).prop('name', newRow.find('.purchase-order-product-qty').prop('name').replace(/0/, rowCount)).val(0);
 			newRow.find('.purchase-order-product-price').prop('id', newRow.find('.purchase-order-product-price').prop('id').replace(/0/, rowCount)).prop('name', newRow.find('.purchase-order-product-price').prop('name').replace(/0/, rowCount)).val('');
 			lastRow.after(newRow);
+			lastRow = newRow;
 			rowCount++;
 			initPurchaseOrderProducts();
 			return false;
