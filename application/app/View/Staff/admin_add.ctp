@@ -4,7 +4,7 @@
 		<div class="col s9">
 			<div class="row no-margin">
 				<div class="content-header teal lighten-2">
-					<h5 class="white-text">Editing Staff</h5>
+					<h5 class="white-text">Add Staff</h5>
 				</div>
 			</div>
 
