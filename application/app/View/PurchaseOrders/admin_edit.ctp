@@ -54,17 +54,19 @@
 								echo $this->Form->input('PurchaseOrderLineItem.' . $counter . '.product_id', array(
 									'empty' => 'Choose a product',
 									'div' => 'col s4',
-									'class' => 'browser-default'
+									'class' => 'browser-default purchase-order-product-product'
 								));
 								echo $this->Form->input('PurchaseOrderLineItem.' . $counter . '.qty', array(
 									'label' => 'Quantity',
 									'div' => 'col s4',
-									'class' => 'browser-default'
+									'class' => 'browser-default purchase-order-product-qty',
+									'min' => 0
 								));
 								echo $this->Form->input('PurchaseOrderLineItem.' . $counter . '.price', array(
 									'label' => 'Price ($)',
 									'div' => 'col s4',
-									'class' => 'browser-default'
+									'class' => 'browser-default purchase-order-product-price',
+									'min' => 0.00
 								));
 							?>
 						</div>
