@@ -52,7 +52,7 @@
 									<?php
 										echo h($item['price']);
 										if ($item['price'] < $item['Product']['price']) {
-											echo '<br><span class="red-text">(' . number_format($item['price'] / $item['Product']['price'], 2) * 100 . '% discount)</span>';
+											echo '<br><span class="red-text">(' . number_format(1 - ($item['price'] / $item['Product']['price']), 2) * 100 . '% discount)</span>';
 										}
 									?>
 								</p>
