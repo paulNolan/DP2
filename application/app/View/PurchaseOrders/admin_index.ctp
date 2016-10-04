@@ -33,6 +33,8 @@
 								<th><?php echo $this->Paginator->sort('staff_id', 'Salesperson'); ?></th>
 								<th><?php echo $this->Paginator->sort('customer_id', 'Customer'); ?></th>
 								<th><?php echo $this->Paginator->sort('created', 'Date of Sale'); ?></th>
+								<th>Total Items Purchased</th>
+								<th><?php echo $this->Paginator->sort('total', 'Total Sale Amount'); ?></th>
 								<th class="actions"><?php echo __('Actions'); ?></th>
 							</tr>
 							</thead>
@@ -47,6 +49,8 @@
 									<?php echo $this->Html->link($purchaseOrder['Customer']['full_name'], array('controller' => 'customer', 'action' => 'view', $purchaseOrder['Customer']['id'])); ?>
 								</td>
 								<td><?php echo date('d F Y @ H:i:s', strtotime($purchaseOrder['PurchaseOrder']['created'])); ?>&nbsp;</td>
+								<td><?php echo $purchaseOrder['PurchaseOrder']['total_items']; ?>&nbsp;</td>
+								<td><?php echo sprintf('$%0.2f', $purchaseOrder['PurchaseOrder']['total']); ?></td>
 								<td class="actions right-align">
 									<?php
 										echo $this->Html->link('Actions', '#', array('data-activates' => 'dropdown-' . $purchaseOrder['PurchaseOrder']['id'], 'class' => 'dropdown-button btn'));

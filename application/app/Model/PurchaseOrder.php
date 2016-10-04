@@ -80,4 +80,20 @@ class PurchaseOrder extends AppModel {
 		)
 	);
 
+	/**
+	 * afterFind() overload
+	 *
+	 * @param mixed $results
+	 * @param bool $primary
+	 */
+	public function afterFind($results, $primary = false) {
+		foreach ($results as &$order) {
+			$order['PurchaseOrder']['total_items'] = 0;
+			foreach ($order['PurchaseOrderLineItem'] as $item) {
+				$order['PurchaseOrder']['total_items'] += $item['qty'];
+			}
+		}
+		return $results;
+	}
+
 }

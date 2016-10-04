@@ -19,14 +19,23 @@ class PurchaseOrdersController extends AppController {
 		'EntityNavigation'
 	);
 
+	public $paginate = array(
+		'PurchaseOrder' => array(
+			'contain' => array(
+				'Staff',
+				'Customer',
+				'PurchaseOrderLineItem.Product'
+			)
+		)
+	);
+
 	/**
 	 * admin_index method
 	 *
 	 * @return void
 	 */
 	public function admin_index() {
-		$this->PurchaseOrder->recursive = 0;
-		$this->set('purchaseOrders', $this->Paginator->paginate());
+		$this->set('purchaseOrders', $this->Paginator->paginate('PurchaseOrder'));
 	}
 
 	/**
