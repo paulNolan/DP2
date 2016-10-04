@@ -53,12 +53,8 @@
 		initPurchaseOrderProducts();
 
 		$('#StaffChangePassword').change(function() {
-			if ($(this).is(':checked')) {
-				$('#StaffPasswordHash').prop('disabled', false);
-			}
-			else {
-				$('#StaffPasswordHash').prop('disabled', true);
-			}
+			var $this = this;
+			$('#StaffPasswordHash').prop('disabled', $($this).is(':checked') ? false : true);
 		});
 	};
 
