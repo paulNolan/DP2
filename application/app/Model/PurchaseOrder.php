@@ -89,8 +89,10 @@ class PurchaseOrder extends AppModel {
 	public function afterFind($results, $primary = false) {
 		foreach ($results as &$order) {
 			$order['PurchaseOrder']['total_items'] = 0;
-			foreach ($order['PurchaseOrderLineItem'] as $item) {
-				$order['PurchaseOrder']['total_items'] += $item['qty'];
+			if (isset($order['PurchaseOrderLineItem'])) {
+				foreach ($order['PurchaseOrderLineItem'] as $item) {
+					$order['PurchaseOrder']['total_items'] += $item['qty'];
+				}
 			}
 		}
 		return $results;
