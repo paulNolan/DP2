@@ -40,8 +40,14 @@ class PurchaseOrdersController extends AppController {
 		if (!$this->PurchaseOrder->exists($id)) {
 			throw new NotFoundException(__('Invalid purchase order'));
 		}
-		$options = array('conditions' => array('PurchaseOrder.' . $this->PurchaseOrder->primaryKey => $id));
-		$this->set('purchaseOrder', $this->PurchaseOrder->find('first', $options));
+		$purchaseOrder = $this->PurchaseOrder->find('first', array(
+			'contain' => array(
+				'Staff',
+				'Customer',
+				'PurchaseOrderLineItem.Product'
+			)
+		));
+		$this->set(compact('purchaseOrder'));
 	}
 
 	/**
