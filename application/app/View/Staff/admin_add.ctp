@@ -21,6 +21,7 @@
 								));
 								echo $this->Form->input('Staff.password_hash', array(
 									'div' => 'input-field col s6',
+									'label' => 'Password',
 									'type' => 'password'
 								));
 							?>
@@ -53,7 +54,7 @@
 								));
 								echo $this->Form->input('Staff.store_location', array(
 									'div' => 'input-field col s6',
-									'label' => 'Medicare Number',
+									'label' => 'Store Location',
 									'type' => 'text'
 								));
 							?>

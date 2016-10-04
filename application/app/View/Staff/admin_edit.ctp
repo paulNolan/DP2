@@ -18,11 +18,19 @@
 						<div class="row">
 							<?php
 								echo $this->Form->input('Staff.username', array(
-									'div' => 'input-field col s6'
+									'div' => 'input-field col s4'
 								));
 								echo $this->Form->input('Staff.password_hash', array(
-									'div' => 'input-field col s6',
-									'type' => 'password'
+									'div' => 'input-field col s4',
+									'label' => 'Password',
+									'type' => 'password',
+									'disabled' => true,
+									'value' => ''
+								));
+								echo $this->Form->input('Staff.change_password', array(
+									'div' => 'input-field col s4',
+									'label' => 'Change Password?',
+									'type' => 'checkbox',
 								));
 							?>
 						</div>
@@ -54,7 +62,7 @@
 								));
 								echo $this->Form->input('Staff.store_location', array(
 									'div' => 'input-field col s6',
-									'label' => 'Medicare Number',
+									'label' => 'Store Location',
 									'type' => 'text'
 								));
 							?>

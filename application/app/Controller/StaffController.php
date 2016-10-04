@@ -85,6 +85,11 @@ class StaffController extends AppController {
 			throw new NotFoundException(__('Invalid staff'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+			if (!empty($this->request->data['Staff']['password_hashed'])) {
+				$staff = $this->Staff->findById($id);
+				$this->request->data['Staff']['keep_password'] = true;
+				$this->request->data['Staff']['old_password'] = $staff['Staff']['password_hashed'];
+			}
 			if ($this->Staff->save($this->request->data)) {
 				$this->Flash->success(__('Staff record updated successfully.'));
 				return $this->redirect(array('action' => 'index'));

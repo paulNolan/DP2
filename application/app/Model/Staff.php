@@ -144,12 +144,18 @@
 		 * @return bool
 		 */
 		public function beforeSave($options = array()) {
-			if (isset($this->data[$this->alias]['password_hash'])) {
-				$passwordHasher = new BlowfishPasswordHasher();
-				$this->data[$this->alias]['password_hash'] = $passwordHasher->hash(
-					$this->data[$this->alias]['password_hash']
-				);
+			if (isset($this->data[$this->alias]['change_password']) and $this->data[$this->alias]['change_password'] == 0) {
+				$this->validator()->remove('password_hash');
 			}
+			else {
+				if (isset($this->data[$this->alias]['password_hash'])) {
+					$passwordHasher = new BlowfishPasswordHasher();
+					$this->data[$this->alias]['password_hash'] = $passwordHasher->hash(
+						$this->data[$this->alias]['password_hash']
+					);
+				}
+			}
+			
 			return true;
 		}
 

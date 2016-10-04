@@ -47,6 +47,15 @@
 		});
 
 		initPurchaseOrderProducts();
+
+		$('#StaffChangePassword').change(function() {
+			if ($(this).is(':checked')) {
+				$('#StaffPasswordHash').prop('disabled', false);
+			}
+			else {
+				$('#StaffPasswordHash').prop('disabled', true);
+			}
+		});
 	};
 
 })(jQuery);
