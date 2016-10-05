@@ -96,10 +96,15 @@ class AppController extends Controller {
     public function beforeRender() {
     	if ($this->Auth->loggedIn()) {
 		    if (isset($this->request->params['admin'])) {
-			    $this->layout = 'admin';
-			    $this->viewVars['title_for_layout'] .= ' | Admin';
-			    $body_class = 'blue-grey lighten-4 admin';
-			    $this->set(compact('body_class'));
+				if (isset($this->request->params['ext']) && $this->request->params['ext'] == 'csv') {
+					$this->layout = 'ajax';
+				}
+				else {
+					$this->layout = 'admin';
+					$this->viewVars['title_for_layout'] .= ' | Admin';
+					$body_class = 'blue-grey lighten-4 admin';
+					$this->set(compact('body_class'));
+				}
 		    }
 	    }
 	}

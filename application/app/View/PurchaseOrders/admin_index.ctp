@@ -19,7 +19,42 @@
 								'data-tooltip' => 'Add record'
 							)
 						);
+						echo $this->Html->link('<i class="material-icons">play_for_work</i>',
+							array(
+								'#'
+							),
+							array(
+								'id' => 'download-report-toggle',
+								'escape' => false,
+								'class' => 'btn-floating btn-small waves-effect waves-light blue-grey darken-2 right tooltipped',
+								'data-position' => 'bottom',
+								'data-delay' => 25,
+								'data-tooltip' => 'Download report'
+							)
+						);
 					?>
+				</div>
+			</div>
+
+			<div class="row no-margin">
+				<div class="content-sub-header teal lighten-5" id="download-csv-area">
+					<form method="post" action="/admin/purchase_orders/export.csv">
+						<div class="row">
+							<div class="col s6 right">
+								<div class="input-field col m4">
+									<label for="start-date" class="">Date From</label>
+									<input type="date" class="datepicker" name="start-date" id="start-date" readonly>
+								</div>
+								<div class="input-field col s4">
+									<label for="end-date" class="">Date To</label>
+									<input type="date" class="datepicker" name="end-date" id="end-date" readonly>
+								</div>
+								<div class="input-field col s4">
+									<input type="submit" value="Export CSV" class="btn">
+								</div>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 

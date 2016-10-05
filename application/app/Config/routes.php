@@ -35,7 +35,8 @@
 
 	Router::connect('/logout', array('controller' => 'users', 'action' => 'logout'));
 
-	Router::parseExtensions('json');
+	Router::parseExtensions('json', 'csv');
+
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

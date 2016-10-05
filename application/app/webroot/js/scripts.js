@@ -31,6 +31,11 @@
 
 		$('select').material_select();
 
+		$('.datepicker').pickadate({
+			selectMonths: true,
+			selectYears: 15,
+			formatSubmit: 'yyyy-mm-dd'
+		});
 
 		var rowCount = 1;
 		var firstRow = $('.product-row:first');
@@ -55,6 +60,11 @@
 		$('#StaffChangePassword').change(function() {
 			var $this = this;
 			$('#StaffPasswordHash').prop('disabled', $($this).is(':checked') ? false : true);
+		});
+
+		$('#download-report-toggle').click(function() {
+			$('#download-csv-area').slideToggle();
+			return false;
 		});
 	};
 

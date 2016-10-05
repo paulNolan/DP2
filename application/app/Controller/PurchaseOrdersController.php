@@ -29,6 +29,47 @@ class PurchaseOrdersController extends AppController {
 		)
 	);
 
+	public function admin_export() {
+		if (!isset($this->request->data['start-date']) || !isset($this->request->data['end-date']) || !$this->request->is('post')) {
+			throw new NotFoundException(__('Invalid purchase order'));
+		}
+
+		$this->response->download('purchase_orders.csv');
+
+		$startDate = $this->request->data['start-date_submit'] .= ' 00:00:00';
+		$endDate = $this->request->data['end-date_submit'] .= ' 23:59:59';
+
+		$purchaseOrders = $this->PurchaseOrder->find('all', array(
+			'contain' => array(
+				'PurchaseOrderLineItem.Product'
+			),
+			'conditions' => array(
+				'PurchaseOrder.created >=' => date('Y-m-d H:i:s', strtotime($startDate)),
+				'PurchaseOrder.created <=' => date('Y-m-d H:i:s', strtotime($endDate)),
+			)
+		));
+
+		$products = array();
+		foreach ($purchaseOrders as $purchaseOrder) {
+			foreach ($purchaseOrder['PurchaseOrderLineItem'] as $item) {
+				if (!isset($products[$item['product_id']])) {
+					$products[$item['product_id']] = array(
+						'name' => '',
+						'qty' => 0,
+						'total' => 0,
+					);
+				}
+				$products[$item['product_id']]['name'] = $item['Product']['name'];
+				$products[$item['product_id']]['qty'] += $item['qty'];
+				$products[$item['product_id']]['total'] += ($item['qty'] * $item['price']);
+			}
+		}
+
+//		pr($products); exit();
+
+		$this->set(compact('products', 'startDate', 'endDate'));
+	}
+
 	/**
 	 * admin_index method
 	 *
