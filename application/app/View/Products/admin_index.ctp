@@ -40,7 +40,7 @@
 								<th><?php echo $this->Paginator->sort('description'); ?></th>
 								<th><?php echo $this->Paginator->sort('qty', 'Quantity'); ?></th>
 								<th><?php echo $this->Paginator->sort('price'); ?></th>
-								<th class="actions"><?php echo __('Actions'); ?></th>
+								<th class="actions">&nbsp;</th>
 							</tr>
 							</thead>
 							<tbody>
