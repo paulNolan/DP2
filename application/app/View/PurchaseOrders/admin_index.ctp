@@ -35,7 +35,7 @@
 								<th><?php echo $this->Paginator->sort('created', 'Date of Sale'); ?></th>
 								<th>Total Items Purchased</th>
 								<th><?php echo $this->Paginator->sort('total', 'Total Sale Amount'); ?></th>
-								<th class="actions"><?php echo __('Actions'); ?></th>
+								<th class="actions">&nbsp;</th>
 							</tr>
 							</thead>
 							<tbody>
