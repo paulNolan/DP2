@@ -105,7 +105,7 @@
 								?>
 							</div>
 							<div class="col s6">
-								<h5>Averages</h5>
+								<h5>Sales Prediction</h5>
 								<?php
 									if (isset($years)):
 										foreach ($total_products as $product):
