@@ -65,8 +65,6 @@ class PurchaseOrdersController extends AppController {
 			}
 		}
 
-//		pr($products); exit();
-
 		$this->set(compact('products', 'startDate', 'endDate'));
 	}
 

@@ -10,6 +10,15 @@ App::uses('AppModel', 'Model');
 class PurchaseOrder extends AppModel {
 
 	/**
+	 * Virtual fields
+	 *
+	 * @var string
+	 */
+	public $virtualFields = array(
+		'year' => 'YEAR(PurchaseOrder.created)'
+	);
+
+	/**
 	 * Validation rules
 	 *
 	 * @var array
@@ -96,6 +105,47 @@ class PurchaseOrder extends AppModel {
 			}
 		}
 		return $results;
+	}
+
+	public function getAverageSalesForProducts($data) {
+		$sales = $this->find('all', array(
+			'contain' => array(
+				'PurchaseOrderLineItem' => array(
+					'Product' => array(
+						'fields' => array(
+							'name',
+							'id'
+						)
+					),
+					'fields' => array(
+						'qty'
+					)
+				)
+			),
+			'conditions' => array(
+				'YEAR(PurchaseOrder.created) >=' => $data['start_year']['year'],
+				'YEAR(PurchaseOrder.created) <=' => $data['end_year']['year'],
+				'MONTH(PurchaseOrder.created)' => $data['month']['month']
+			),
+		));
+
+		$years = array();
+		foreach ($sales as $sale) {
+			if (!isset($years[$sale['PurchaseOrder']['year']])) {
+				$years[$sale['PurchaseOrder']['year']] = array();
+			}
+			foreach ($sale['PurchaseOrderLineItem'] as $line_item) {
+				if (!isset($years[$sale['PurchaseOrder']['year']][$line_item['product_id']])) {
+					$years[$sale['PurchaseOrder']['year']][$line_item['product_id']] = array(
+						'Product' => $line_item['Product'],
+						'qty' => 0
+					);
+				}
+				$years[$sale['PurchaseOrder']['year']][$line_item['product_id']]['qty'] += $line_item['qty'];
+			}
+		}
+
+		return $years;
 	}
 
 }

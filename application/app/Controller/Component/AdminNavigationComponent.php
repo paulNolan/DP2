@@ -56,6 +56,14 @@
 				),
 				'class' => array()
 			),
+			'Sales Prediction' => array(
+				'url' => array(
+					'admin' => true,
+					'controller' => 'sales_prediction',
+					'action' => 'index'
+				),
+				'class' => array()
+			),
 		);
 
 		/**
