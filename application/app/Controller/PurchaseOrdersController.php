@@ -89,6 +89,9 @@ class PurchaseOrdersController extends AppController {
 			throw new NotFoundException(__('Invalid purchase order'));
 		}
 		$purchaseOrder = $this->PurchaseOrder->find('first', array(
+			'conditions' => array(
+				'PurchaseOrder.id' => $id
+			),
 			'contain' => array(
 				'Staff',
 				'Customer',
