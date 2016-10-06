@@ -124,6 +124,13 @@ class PurchaseOrdersController extends AppController {
 			}
 			$this->request->data['PurchaseOrder']['total'] = $total;
 			if ($continue and $this->PurchaseOrder->saveAssociated($this->request->data)) {
+				foreach ($this->request->data['PurchaseOrderLineItem'] as $item) {
+					$this->PurchaseOrder->PurchaseOrderLineItem->Product->read(null, $item['product_id']);
+					$this->PurchaseOrder->PurchaseOrderLineItem->Product->set(array(
+						'qty' => $this->PurchaseOrder->PurchaseOrderLineItem->Product->field('qty') - $item['qty']
+					));
+					$this->PurchaseOrder->PurchaseOrderLineItem->Product->save();
+				}
 				$this->Flash->success(__('New purchase order record created successfully.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
