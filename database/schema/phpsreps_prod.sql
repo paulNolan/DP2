@@ -44,7 +44,7 @@ CREATE TABLE `customers` (
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` VALUES (1,'Hamish','Dean','3 Melbourne St',420608139,'hamish.dean@live.com.au',6543213213,'2016-09-07 22:12:39','2016-09-07 23:40:48'),(2,'John','Doe','1 Melbourne St',400000000,'john.doe@hotmail.com',5489126161,'2016-09-07 22:13:13','2016-09-07 23:40:10'),(3,'Buddy','Dean','2 Melbourne St',422000666,'buddy.dean@hotmail.com',1646206119,'2016-09-07 22:13:30','2016-09-07 23:40:31');
+INSERT INTO `customers` VALUES (1,'Hamish','Dean','3 Melbourne St',410225335,'hamish@email.com.au',6543213213,'2016-09-07 22:12:39','2016-09-07 23:40:48'),(2,'John','Doe','1 Melbourne St',400000000,'john.doe@hotmail.com',5489126161,'2016-09-07 22:13:13','2016-09-07 23:40:10'),(3,'Buddy','Dean','2 Melbourne St',422000666,'buddy.dean@hotmail.com',1646206119,'2016-09-07 22:13:30','2016-09-07 23:40:31');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,7 +165,7 @@ CREATE TABLE `staff` (
 
 LOCK TABLES `staff` WRITE;
 /*!40000 ALTER TABLE `staff` DISABLE KEYS */;
-INSERT INTO `staff` VALUES (1,'Hamish','Dean','Somewhere',420608139,'hamish.dean@live.com.au','CBD','hamish','$2a$10$E.gz.sMI1LkjUvN1v72iCeHP0pGOBC/ainYgFXMuqE.zuBTNuYA8m','2016-09-04 19:40:56','2016-09-04 19:40:56'),(2,'Dean','Hamish','Somewhere',44054561,'dean.hamish@live.com.au','Somewhere','dean','$2a$10$E.gz.sMI1LkjUvN1v72iCeHP0pGOBC/ainYgFXMuqE.zuBTNuYA8m','2016-09-07 22:27:02','2016-09-07 22:27:05');
+INSERT INTO `staff` VALUES (1,'Hamish','Dean','Somewhere',410225335,'hamish@email.com.au','CBD','hamish','$2a$10$E.gz.sMI1LkjUvN1v72iCeHP0pGOBC/ainYgFXMuqE.zuBTNuYA8m','2016-09-04 19:40:56','2016-09-04 19:40:56'),(2,'Dean','Hamish','Somewhere',44054561,'dean.hamish@live.com.au','Somewhere','dean','$2a$10$E.gz.sMI1LkjUvN1v72iCeHP0pGOBC/ainYgFXMuqE.zuBTNuYA8m','2016-09-07 22:27:02','2016-09-07 22:27:05');
 /*!40000 ALTER TABLE `staff` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
